@@ -14,6 +14,14 @@ this_dir = os.path.realpath(os.path.dirname(__file__))
 
 VERSION = '1.1.10'
 
+extra_compile_args = []
+define_macros = []
+
+is_windows = sys.platform == "win32"
+if is_windows:
+    define_macros.append(("ssize_t", "intptr_t"))
+else:
+    extra_compile_args.append("-std=c99")
 
 def main():
     setup(
@@ -31,49 +39,56 @@ def main():
                       libraries=['postal'],
                       include_dirs=['/usr/local/include'],
                       library_dirs=['/usr/local/lib'],
-                      extra_compile_args=['-std=c99'],
+                      extra_compile_args=extra_compile_args,
+                      define_macros=define_macros,
                       ),
             Extension('postal._parser',
                       sources=['postal/pyparser.c', 'postal/pyutils.c'],
                       libraries=['postal'],
                       include_dirs=['/usr/local/include'],
                       library_dirs=['/usr/local/lib'],
-                      extra_compile_args=['-std=c99'],
+                      extra_compile_args=extra_compile_args,
+                      define_macros=define_macros,
                       ),
             Extension('postal._token_types',
                       sources=['postal/pytokentypes.c'],
                       libraries=['postal'],
                       include_dirs=['/usr/local/include'],
                       library_dirs=['/usr/local/lib'],
-                      extra_compile_args=['-std=c99'],
+                      extra_compile_args=extra_compile_args,
+                      define_macros=define_macros,
                       ),
             Extension('postal._tokenize',
                       sources=['postal/pytokenize.c', 'postal/pyutils.c'],
                       libraries=['postal'],
                       include_dirs=['/usr/local/include'],
                       library_dirs=['/usr/local/lib'],
-                      extra_compile_args=['-std=c99'],
+                      extra_compile_args=extra_compile_args,
+                      define_macros=define_macros,
                       ),
             Extension('postal._normalize',
                       sources=['postal/pynormalize.c', 'postal/pyutils.c'],
                       libraries=['postal'],
                       include_dirs=['/usr/local/include'],
                       library_dirs=['/usr/local/lib'],
-                      extra_compile_args=['-std=c99'],
+                      extra_compile_args=extra_compile_args,
+                      define_macros=define_macros,
                       ),
             Extension('postal._near_dupe',
                       sources=['postal/pyneardupe.c', 'postal/pyutils.c'],
                       libraries=['postal'],
                       include_dirs=['/usr/local/include'],
                       library_dirs=['/usr/local/lib'],
-                      extra_compile_args=['-std=c99'],
+                      extra_compile_args=extra_compile_args,
+                      define_macros=define_macros,
                       ),
             Extension('postal._dedupe',
                       sources=['postal/pydedupe.c', 'postal/pyutils.c'],
                       libraries=['postal'],
                       include_dirs=['/usr/local/include'],
                       library_dirs=['/usr/local/lib'],
-                      extra_compile_args=['-std=c99'],
+                      extra_compile_args=extra_compile_args,
+                      define_macros=define_macros,
                       ),
         ],
         packages=find_packages(),
