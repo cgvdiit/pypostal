@@ -18,7 +18,7 @@ define_macros = []
 
 is_windows = sys.platform == "win32"
 if is_windows:
-    define_macros.append(("ssize_t", "intptr_t"))
+    define_macros.append(("ssize_t", "Py_ssize_t"))
 
 def main():
     setup(
